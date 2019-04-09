@@ -196,8 +196,8 @@ This should start a gRPC server with console output like so -
 
 ## Useful links
 
-1.[Protocol Buffers](https://developers.google.com/protocol-buffers/)
-2.[Protobuf and c#](https://developers.google.com/protocol-buffers/docs/csharptutorial)
-3.[Json vs Protobuf](https://auth0.com/blog/beating-json-performance-with-protobuf/)
-4.[gRPC](https://grpc.io/)
-5.[An Early Look at gRPC and ASP.NET Core 3.0](https://www.stevejgordon.co.uk/early-look-at-grpc-using-aspnet-core-3)
+1. [Protocol Buffers](https://developers.google.com/protocol-buffers/)
+2. [Protobuf and c#](https://developers.google.com/protocol-buffers/docs/csharptutorial)
+3. [Json vs Protobuf](https://auth0.com/blog/beating-json-performance-with-protobuf/)
+4. [gRPC](https://grpc.io/)
+5. [An Early Look at gRPC and ASP.NET Core 3.0](https://www.stevejgordon.co.uk/early-look-at-grpc-using-aspnet-core-3)
