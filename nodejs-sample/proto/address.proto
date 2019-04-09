@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package test;
+
+service ContactService {
+    rpc list (Empty) returns (ContactList) {}
+}
+message Empty {}
+
+message Contact {
+    string id = 1;
+    string Name = 2;
+    string address = 3;
+}
+
+message ContactList {
+   repeated Contact contacts = 1;
+}
