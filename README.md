@@ -208,7 +208,8 @@ client.list({}, (error, contacts) => {
   ```
 
 12. Run the client to invoke list service
-``` node get_contacts.js```
+
+ ``` node get_contacts.js```
 
   you should see the list of contacts defined printed in the console
 
@@ -217,7 +218,7 @@ successfully fetch List of contacts
 { contacts:
    [ { id: '1', Name: '', address: '1 Sterling Way, CA 45532' },
      { id: '2', Name: '', address: '2 Sterling Way, CA 45532' } ] }
-     ```
+  ```
 
 
 ## Exercises
