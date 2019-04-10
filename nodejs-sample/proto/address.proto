@@ -3,7 +3,14 @@ syntax = "proto3";
 package test;
 
 service ContactService {
+   // normal function call - request/response
     rpc list (Empty) returns (ContactList) {}
+
+   /**
+   also supports server-side streaming RPC , client-side streaming RPC,
+   a bidirectional streaming RPC
+   **/
+
 }
 message Empty {}
 
