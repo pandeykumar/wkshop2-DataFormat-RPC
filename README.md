@@ -222,11 +222,11 @@ successfully fetch List of contacts
 
 
 ## Exercises
-1. Deploy the service in a docker container
+[1. Deploy the service in a docker container](#docker_deployment)
 2. Implement a add service to add a contact to the list
-3. Generate C# client from address.proto and invoke list and add service
+[3. Generate C# client from address.proto and invoke list and add service](#dotnet_client)
 
-## 1. Deploy gRPC service in nodejs server as docker container
+## 1. <a id="docker_deployment"></a>Deploy gRPC service in nodejs server as docker container
 
 Please get the latest from github and verify that nodejs-sample/Dockerfile exists in your local copy.
 This file is used to create a docker image of our gRPC service running under Nodejs
@@ -289,7 +289,7 @@ or
 2. from your dotnet client like so
    ```dotnet run -p dotnetClient-sample```
 
-## 3. dotnet client to call the gRPC service running in nodejs server
+## <a id="dotnet_client"></a>3. dotnet client to call the gRPC service running in nodejs server
 This example uses the dotnet SDK in mac OSX , please adjust the instructions as needed for
 other platforms.
 
