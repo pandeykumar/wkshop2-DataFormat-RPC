@@ -227,6 +227,108 @@ successfully fetch List of contacts
 3. Generate C# client from address.proto and invoke list and add service
 
 
+## dotnet client to call the gRPC service
+This example uses the dotnet SDK in mac OSX , please adjust the instructions as needed for
+other platforms.
+
+OK, so one advantage of the gRPC is that based on the service defined in .proto
+file, we can generate client sdk to access the service using many languages.
+Lets try with c# and dotnet environment. We'll create a C# client and call the service running under nodejs in the previous section.
+
+We assume that you have dotnet SDK installed -
+
+```
+$ dotnet --list-sdks
+2.2.105 [/usr/local/share/dotnet/sdk]
+```
+
+1. create a new dotnet console project called dotnetClient-sample and cd to it. Run this command under wkshop2-DataFormat-RPC folder to follow this example.
+
+```
+dotnet new console -n dotnetClient-sample
+
+```
+Here's my output -
+
+```
+$ dotnet new console -n dotnetClient-sample
+The template "Console Application" was created successfully.
+
+Processing post-creation actions...
+Running 'dotnet restore' on dotnetClient-sample/dotnetClient-sample.csproj...
+  Restoring packages for /Users/mymac/temp/wkshop2-DataFormat-RPC/dotnetClient-sample/dotnetClient-sample.csproj...
+  Generating MSBuild file /Users/mymac/temp/wkshop2-DataFormat-RPC/dotnetClient-sample/obj/dotnetClient-sample.csproj.nuget.g.props.
+  Generating MSBuild file /Users/mymac/temp/wkshop2-DataFormat-RPC/dotnetClient-sample/obj/dotnetClient-sample.csproj.nuget.g.targets.
+  Restore completed in 267.19 ms for /Users/mymac/temp/wkshop2-DataFormat-RPC/dotnetClient-sample/dotnetClient-sample.csproj.
+
+Restore succeeded.
+```
+Now cd to the new folder created
+
+```
+$ cd dotnetClient-sample/
+
+```
+
+2. Lets add Grpc package
+```
+$ dotnet add package Grpc
+```
+3. Lets add Grpc.Tools package
+```
+dotnet add package Grpc.Tools
+```
+4. Lets add package Google.Protobuf
+```
+dotnet add package Google.Protobuf
+```
+5. Lets specify the address.proto file that has the service and message definition.
+
+In ***dotnetClient-sample.csproj*** file add Protobuf to ItemGroup.
+
+```
+<ItemGroup>
+....
+...
+  <Protobuf Include="../nodejs-sample/proto/address.proto" />
+</ItemGroup>  
+```
+6. Update Program.cs to make the client call to gRPC service
+```
+using System;
+using Grpc.Core;
+using Test;
+
+namespace testclientgrpc
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Channel channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
+            var client = new ContactService.ContactServiceClient(channel);
+            var reply = client.list(new Test.Empty());
+            Console.WriteLine("contacts: " + reply);
+
+            channel.ShutdownAsync().Wait();
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
+
+```
+7. Run the client from wkshop2-DataFormat-RPC folder ( make sure you have the gRPC server running from the nodejs-sample in a separate window)
+```
+dotnet run -p dotnetClient-sample
+```
+you should see contact list as result -
+
+```
+$ dotnet run -p dotnetClient-sample
+contacts: { "contacts": [ { "id": "1", "address": "1 Sterling Way, CA 45532" }, { "id": "2", "address": "2 Sterling Way, CA 45532" } ] }
+Press any key to exit...
+```
 ## Useful links
 
 1. [Protocol Buffers](https://developers.google.com/protocol-buffers/)

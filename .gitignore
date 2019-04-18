@@ -1,3 +1,5 @@
 .git
 nodejs-sample/package-lock.json
 nodejs-sample/node_modules
+dotnetClient-sample/bin
+dotnetClient-sample/obj
