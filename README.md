@@ -226,8 +226,70 @@ successfully fetch List of contacts
 2. Implement a add service to add a contact to the list
 3. Generate C# client from address.proto and invoke list and add service
 
+## 1. Deploy gRPC service in nodejs server as docker container
 
-## 1. dotnet client to call the gRPC service
+Please get the latest from github and verify that nodejs-sample/Dockerfile exists in your local copy.
+This file is used to create a docker image of our gRPC service running under Nodejs
+Here's the content for the Dockerfile
+```
+# This image comes with Node.js and NPM already installed
+FROM node:11-alpine
+
+# Create app directory
+WORKDIR /nodejs-sample
+
+# Copy everything from this folder onwards to working directory
+COPY . /nodejs-sample
+
+RUN npm install grpc
+
+RUN npm install @grpc/proto-loader
+
+CMD ["node", "index.js"]
+```
+Now lets build an image called ***my-nodejs-grpc-server***
+```docker build -t my-nodejs-grpc-server .```
+
+Don't forget the . at the end!
+
+Now lets verify that it created an image in the local repository
+``` > docker images```
+
+Should see something like this
+```
+$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+my-nodejs-grpc-server   latest              42fb4f5b5cad        15 minutes ago      133MB
+```
+Now that we have the image of our gRPC service running under nodejs server lets
+launch a container instance of this images
+
+```docker run -d -p 50051:50051 my-nodejs-grpc-server ```
+
+You can verify that the container has launched by listing the containers
+
+```docker ps ```
+
+You should see something like this
+```
+$ docker ps
+CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS              PORTS                      NAMES
+05da4484c4dd        my-nodejs-grpc-server   "node index.js"     20 minutes ago      Up 5 seconds        0.0.0.0:50051->50051/tcp   stupefied_chaplygin
+```
+
+You can view the logs inside the container like so
+
+```docker logs <containerid> ```
+
+Now you are ready to test the gRPC service from either your
+1. nodejs client like so
+   ```node get_contacts.js```
+or
+
+2. from your dotnet client like so
+   ```dotnet run -p dotnetClient-sample```
+
+## 3. dotnet client to call the gRPC service running in nodejs server
 This example uses the dotnet SDK in mac OSX , please adjust the instructions as needed for
 other platforms.
 
