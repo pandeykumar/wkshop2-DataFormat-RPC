@@ -222,9 +222,9 @@ successfully fetch List of contacts
 
 
 ## Exercises
-[1. Deploy the service in a docker container](#docker_deployment)
+1. [Deploy the service in a docker container](#docker_deployment)
 2. Implement a add service to add a contact to the list
-[3. Generate C# client from address.proto and invoke list and add service](#dotnet_client)
+3. [Generate C# client from address.proto and invoke list and add service](#dotnet_client)
 
 ## 1. <a id="docker_deployment"></a>Deploy gRPC service in nodejs server as docker container
 
