@@ -241,6 +241,7 @@ We assume that you have dotnet SDK installed -
 $ dotnet --list-sdks
 2.2.105 [/usr/local/share/dotnet/sdk]
 ```
+You can follow this blog to get more details [gRPC-dotnet](https://grpc.io/blog/grpc-dotnet-build)
 
 1. create a new dotnet console project called dotnetClient-sample and cd to it. Run this command under wkshop2-DataFormat-RPC folder to follow this example.
 
