@@ -227,7 +227,7 @@ successfully fetch List of contacts
 3. Generate C# client from address.proto and invoke list and add service
 
 
-## dotnet client to call the gRPC service
+## 1. dotnet client to call the gRPC service
 This example uses the dotnet SDK in mac OSX , please adjust the instructions as needed for
 other platforms.
 

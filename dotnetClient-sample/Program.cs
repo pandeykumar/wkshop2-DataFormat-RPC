@@ -8,7 +8,7 @@ namespace testclientgrpc
     {
         static void Main(string[] args)
         {
-            Channel channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
+            Channel channel = new Channel("0.0.0.0:50051", ChannelCredentials.Insecure);
             var client = new ContactService.ContactServiceClient(channel);
             var reply = client.list(new Test.Empty());
             Console.WriteLine("contacts: " + reply);
